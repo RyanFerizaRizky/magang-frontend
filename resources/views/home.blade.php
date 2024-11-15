@@ -11,7 +11,7 @@
   <body>
     <div class="sidebar d-flex flex-column p-3">
         <a href="/" class="d-flex justify-content-center">
-            <img src="images/logopnj.png" class="" width="100" alt="">
+            <img src="{{ asset('img/logopnj.png') }}" width="100" alt="">
         </a>
         <span class="fs-4">Politeknik Negeri Jakarta</span>
         <span class="fs-6">Admin Dashboard</span>

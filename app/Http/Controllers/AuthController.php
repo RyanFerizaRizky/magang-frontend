@@ -8,16 +8,26 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function view_login(){
-        return view('auth.login');
-    }
+    public function login(Request $request){
 
-    public function view_register(){
-        return view('auth.register');
-    }
+        $credentials = $request->validate([
+            'email' => ['required'],
+            'password' => ['required'],
+        ]);
 
-    public function login(){
+        try {
 
+            if(Auth::attempt($credentials)){
+                $request->session()->regenerate();
+
+                return redirect()->route('home');
+            }
+
+            dd('Error');
+
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 
     public function register(Request $request){
@@ -25,7 +35,7 @@ class AuthController extends Controller
             'name' => ['required'],
             'email' => ['required'],
             'password' => ['required'],
-            'akses' => ['required'],
+            // 'akses' => ['required'],
         ]);
  
         try {
@@ -34,7 +44,7 @@ class AuthController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
-                'akses' => $request->akses,
+                // 'akses' => $request->akses,
             ]);
 
             Auth::login($user);
@@ -42,7 +52,18 @@ class AuthController extends Controller
             return redirect()->route('home');
 
         } catch (\Throwable $th) {
-            return back()->with('message',['text' => 'Register gagal.', 'class' => 'danger']);
+            dd($th->getMessage());
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home');
     }
 }
