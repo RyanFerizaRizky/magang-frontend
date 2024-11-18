@@ -6,12 +6,13 @@
     <title>H2H</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{{ asset('css/style1.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/style1.css') }}"> --}}
+    <link rel="stylesheet" href="{{ secure_asset('css/style1.css') }}">
   </head>
   <body>
     <div class="sidebar d-flex flex-column p-3">
         <a href="/" class="d-flex justify-content-center">
-            <img src="images/logopnj.png" class="" width="100" alt="">
+          <img src="{{ asset('img/logopnj.png') }}" width="100" alt="">
         </a>
         <span class="fs-4">Politeknik Negeri Jakarta</span>
         <span class="fs-6">Admin Dashboard</span>
