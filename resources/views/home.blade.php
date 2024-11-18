@@ -1,1 +1,1 @@
-welcome, login dek
+welcome To Politeknik Negeri Jakarta
